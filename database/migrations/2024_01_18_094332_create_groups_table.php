@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index('groups_id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('group_profile',30)->nullable();

@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('group_members', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ref_group_id');
-            $table->integer('ref_user_id');
+            $table->id()->index('group_member_id');
+            $table->integer('ref_group_id')->index('ref_group_id');
+            $table->integer('ref_user_id')->index('ref_user_id');
             $table->enum('role',['admin','member']);
             $table->enum('is_pinned',['0','1'])->default('0');
             $table->enum('is_archived',['0','1'])->default('0');

@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->integer('socket_id')->nullable();
-            $table->string('email')->unique();
+            $table->id()->index('user_id');
+            $table->integer('socket_id')->nullable()->index('socket_id');
+            $table->string('email')->unique()->index('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('activity_status',['Online','Offline'])->default('Offline');
+            $table->enum('activity_status',['Online','Offline'])->default('Offline')->index('activity_status');
             $table->string('session_token')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

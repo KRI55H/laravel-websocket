@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('broadcast_members', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ref_broadcast_id');
-            $table->integer('ref_user_id');
+            $table->id()->index('broadcast_member_id');
+            $table->integer('ref_broadcast_id')->index('ref_broadcast_id');
+            $table->integer('ref_user_id')->index('ref_user_id');
             $table->timestamps();
         });
     }

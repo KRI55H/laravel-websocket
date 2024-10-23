@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ref_user_id');
-            $table->string('username',50)->nullable();
+            $table->id()->index('user_profile_id');
+            $table->integer('ref_user_id')->index('user_profile_ref_user_id');
+            $table->string('username',50)->nullable()->index('user_profile_username');
             $table->string('name');
             $table->string('avtar')->nullable();
             $table->string('profile_img',30)->nullable();
-            $table->enum('status',['online','offline'])->default('offline');
-            $table->dateTime('last_active')->nullable();
+            $table->dateTime('last_active')->nullable()->index('user_profile_last_active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('chats', function (Blueprint $table) {
-            $table->id();
-            $table->integer('sender_user_id');
-            $table->integer('receiver_user_id')->nullable();
-            $table->integer('ref_group_id')->nullable();
+            $table->id()->index('chat_id');
+            $table->integer('sender_user_id')->index('chat_sender_user_id');
+            $table->integer('receiver_user_id')->nullable()->index('chat_receiver_user_id');
+            $table->integer('ref_group_id')->nullable()->index('chat_ref_group_id');
             $table->text('message')->nullable();
             $table->string('filename',30)->nullable();
             $table->enum('file_type',['document','image','video'])->nullable();

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('broadcasts', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ref_user_id');
+            $table->id()->index('broadcast_id');
+            $table->integer('ref_user_id')->index('ref_user_id');
             $table->string('title');
             $table->softDeletes();
             $table->timestamps();
